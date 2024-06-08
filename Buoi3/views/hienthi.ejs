@@ -17,28 +17,28 @@
 <body>
     <h2> Danh sach tai khoan</h2>
 
-    <a href="/addaccount"> Them tai khoan</a>
+    <a href="/themdulieu"> Them du lieu</a>
 
     <div class="container pt-3">
         <table>
             <thead>
                 <tr>
                     <th>Account ID</th>
-                    <th>Email</th>
-                    <th>Username</th>
-                    <th>Fullname</th>
-                    <th>Department ID</th>
+                    <th>Lastname</th>
+                    <th>Firstname</th>
+                    <th>Address</th>
+                    <th>City </th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
-            <% accounts.forEach(account => { %>
+            <% persons.forEach(person => { %>
             <tbody>
-                    <td><%= account.PersonID      %></td>
-                    <td><%= account.Lasname         %></td>
-                    <td><%= account.Firstname      %></td>
-                    <td><%= account.Address     %></td>
-                    <td><%= account.City   %></td>
+                    <td><%= person.PersonID      %></td>
+                    <td><%= person.LastName         %></td>
+                    <td><%= person.FirstName      %></td>
+                    <td><%= person.Address     %></td>
+                    <td><%= person.City   %></td>
                     <td><a href="..."> Xoa</a></td>
                     <td><a href="..."> Sua</a></td>
             </tbody>

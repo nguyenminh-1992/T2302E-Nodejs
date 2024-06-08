@@ -10,8 +10,6 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 var config = {
-    user: 'sa',
-    password: 'admin',
     server: "DESKTOP-E1ED7QQ\\NGUYENMINH", //Khac nhau voi moi may
     database: "testnodejs",
     options: {
@@ -34,13 +32,13 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render('contact');
 })
+
 app.get('/danhsach', (req, res) => {
-      // Execute a SELECT query
       new sql.Request().query("SELECT * FROM Persons", (err, result) => {
         if (err) {
             console.error("Error executing query:", err);
         } else {
-            response.send(result.recordset); // Send query result as response
+            res.send(result.recordset);
             console.dir(result.recordset);
         }
     });
@@ -48,9 +46,24 @@ app.get('/danhsach', (req, res) => {
 app.get('/hienthi', async (req, res) => {
     try {
         const result = await sql.query`SELECT * FROM Persons`;
-        res.render('hienthi', { accounts: result.recordset });
+        res.render('hienthi', { persons: result.recordset });
     } catch (err) {
-        res.status(500).send('Error fetching users: ' + err);
+        res.status(500).send('Error fetching Persons: ' + err);
+    }
+});
+
+
+app.get('/themdulieu', (req,res)=>{
+    res.render('themdulieu');
+})
+
+app.post('/themdulieu', async (req, res) => {
+    try {
+        const { PersonID, LastName,FirstName,Address,City } = req.body;
+        await sql.query`INSERT INTO dbo.Persons (PersonID, LastName,FirstName,Address,City) VALUES (${PersonID},${LastName},${FirstName},${Address},${City});`;
+        return res.redirect('/hienthi');
+    } catch (err) {
+        console.error('Loi khong them duoc du lieu',err);
     }
 });
 
