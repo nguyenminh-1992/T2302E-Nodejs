@@ -56,13 +56,19 @@ app.get('/danhsach', (req, res) => {
     });
 })
 // Hiển thị dữ liệu theo route /hienthi đổ vào các tag <table>
-app.get('/hienthi', async (req, res) => {
-    try {
-        const result = await sql.query`SELECT * FROM Persons`;
-        res.render('hienthi', { persons: result.recordset });
-    } catch (err) {
-        res.status(500).send('Error fetching Persons: ' + err);
+app.get('/hienthi', (req, res) => {
+    const { PersonID } = req.query;
+    const request = new sql.Request();
+    
+    let query = 'SELECT * FROM Persons';
+    if (PersonID) {
+        query += ` WHERE PersonID = ${PersonID}`;
     }
+    
+    request.query(query, (err, result) => {
+        if (err) console.log(err);
+        res.render('hienthi', { persons: result.recordset });
+    });
 });
 //Thêm dữ liệu
 //Tạo trang thêm dữ liệu
@@ -119,6 +125,9 @@ app.post('/delete/:PersonID', async (req, res) => {
         return res.status(500).send('Error deleting user: ' + err);
     }
 });
+
+//Tìm kiếm theo PersonID
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
