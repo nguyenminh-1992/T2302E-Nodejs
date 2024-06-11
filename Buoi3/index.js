@@ -35,6 +35,15 @@ app.get('/contact', (req, res) => {
     res.render('contact');
 })
 
+// Tạo database trong MSSQL
+// CREATE TABLE Persons (
+//     PersonID INT PRIMARY KEY IDENTITY(1,1),
+//     LastName NVARCHAR(255) NOT NULL,
+//     FirstName NVARCHAR(255) NOT NULL,
+// 	Address NVARCHAR(255) NOT NULL,
+// 	City NVARCHAR(255) NOT NULL
+// );
+
 //Hiển thị dữ liệu theo route /danhsach dưới dạng JSON
 app.get('/danhsach', (req, res) => {
       new sql.Request().query("SELECT * FROM Persons", (err, result) => {
