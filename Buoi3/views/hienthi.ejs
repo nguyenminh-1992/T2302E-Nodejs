@@ -39,8 +39,10 @@
                     <td><%= person.FirstName      %></td>
                     <td><%= person.Address     %></td>
                     <td><%= person.City   %></td>
-                    <td><a href="..."> Xoa</a></td>
-                    <td><a href="..."> Sua</a></td>
+                    <td><form action="/delete/<%= person.PersonID %>" method="post" style="display:inline;">
+                        <button type="submit">Xoa</button>
+                    </form></td>
+                    <td><a href="/update/<%= person.PersonID%>"> Sua</a></td>
             </tbody>
             <% }); %>
         </table>

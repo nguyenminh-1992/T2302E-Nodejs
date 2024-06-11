@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua du lieu</title>
+</head>
+<body>
+    <form action="/update/<%= persons.PersonID %>" method="post">
+        <label>Address</label>
+        <input type="text" name="Address" value="<%= persons.Address %>" required></br>
+        <label>City</label>
+        <input type="text" name="City" value="<%= persons.City %>" required></br>
+        
+        <button type="submit"> Chinh sua </button>
+    </form>
+
+    
+</body>
+</html>
