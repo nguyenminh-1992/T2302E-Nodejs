@@ -55,7 +55,7 @@ app.get('/danhsach', (req, res) => {
         }
     });
 })
-// Hiển thị dữ liệu theo route /hienthi đổ vào các tag <table>
+// Hiển thị dữ liệu theo route /hienthi đổ vào các tag <table> - Thêm chức năng tìm kiếm theo ID
 app.get('/hienthi', (req, res) => {
     const { PersonID } = req.query;
     const request = new sql.Request();
